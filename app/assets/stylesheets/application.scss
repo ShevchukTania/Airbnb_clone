@@ -1,2 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "toastr";
+
+.avatar_small{
+  width: 30px;
+}
+
+.avatar_medium{
+  width: 50px;
+}
+
+.avatar_large{
+  width: 80px;
+}
+
+.avatar_full{
+  width: 100%;
+}
