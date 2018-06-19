@@ -11,10 +11,6 @@ class RoomsController < ApplicationController
 
   def create
     @room = current_user.rooms.build(room_params)
-  end
-
-  def listing
-    @room = Room.find(params[:id])
     if @room.save
       redirect_to listing_room_path(@room), notice: "Saved"
     else
@@ -22,9 +18,12 @@ class RoomsController < ApplicationController
     end
   end
 
-  def show
-
+  def listing
   end
+
+  def show
+  end
+  
   def pricing
   end
 
@@ -56,7 +55,8 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name,
-      :summary, :address, :is_air, :is_heating, :is_internet, :is_tv, :is_kitchen, :price, :active)
+    params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room,
+      :bath_room, :listing_name, :summary, :address, :is_air, :is_heating,
+      :is_internet, :is_tv, :is_kitchen, :price, :active)
   end
 end
