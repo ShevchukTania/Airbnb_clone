@@ -1,6 +1,8 @@
 class RoomsController < ApplicationController
   before_action :set_room, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:show]
+  before_action :is_authorithed, only: [:listing, :pricing, :description,
+    :photo_upload, :amenities, :location, :update]
   def index
     @rooms = current_user.rooms
   end
@@ -14,7 +16,8 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to listing_room_path(@room), notice: "Saved"
     else
-      render :new, notice: "Something went wrong"
+      flash[:alert] = 'Someting went wrong'
+      render :new
     end
   end
 
@@ -23,7 +26,7 @@ class RoomsController < ApplicationController
 
   def show
   end
-  
+
   def pricing
   end
 
@@ -31,6 +34,7 @@ class RoomsController < ApplicationController
   end
 
   def photo_upload
+    @photos = @room.photos
   end
 
   def amenities
@@ -52,6 +56,11 @@ class RoomsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:id])
+  end
+
+  def is_authorithed
+    redirect_to root_path, alert: 'You do not have permition' unless current_user.id = @room.user.id
+
   end
 
   def room_params
