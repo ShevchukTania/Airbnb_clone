@@ -25,6 +25,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @photos = @room.photos
   end
 
   def pricing
@@ -44,7 +45,9 @@ class RoomsController < ApplicationController
   end
 
   def update
-    if @room.update(room_params)
+    new_params = room_params
+    new_params = room_params.merge(active: true) if is_ready_room
+    if @room.update(new_params)
       flash[:notice] = "Saved"
     else
       flash[:notice] = "Something went wrong"
@@ -60,7 +63,10 @@ class RoomsController < ApplicationController
 
   def is_authorithed
     redirect_to root_path, alert: 'You do not have permition' unless current_user.id = @room.user.id
+  end
 
+  def is_ready_room
+    !@room.active && !@room.address.blank? && !@room.photos.blank? && !@room.listing_name.blank? && !@room.price.blank?
   end
 
   def room_params

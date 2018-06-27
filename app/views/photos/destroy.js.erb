@@ -3,7 +3,7 @@ $('#photos').html("<%= j render 'photos_list'%>")
   $('#photo_check').hide();
 <%end%>
 
-<% if !(@room.active || @room.address.blank? || @room.photos.blank? || @room.listing_name.blank? || @room.price.blank?)%>
+<% if !@room.active && !@room.address.blank? && !@room.photos.blank? && !@room.listing_name.blank? && !@room.price.blank?%>
   $('#publish_button').attr('disabled', false);
 <%else%>
   $('#publish_button').attr('disabled', true);
