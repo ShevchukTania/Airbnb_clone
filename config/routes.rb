@@ -16,6 +16,7 @@ resources :rooms, except: [:edit] do
     get 'location'
   end
   resources :photos, only: [:create, :destroy]
+  resources :reservations, only: [:create]
 end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
