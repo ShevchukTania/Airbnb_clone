@@ -88,7 +88,7 @@ a{
 }
 
 .panel-default .panel-heading {
-  color: #fffff;
+  color: #fff;
   background-color: #00A699;
   font-size: 18px;
   font-weight: 400;
@@ -249,4 +249,23 @@ a{
   text-decoration: line-through;
   color: rgba(0,0,0, 0.45);
   font-size: 14px;
+}
+
+// reservations
+.reservation-table td{
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #dce0e0;
+  padding: 10px;
+}
+.reservation-table .total td{
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+}
+.form-control.datepicker{
+  color: #00A699;
+  background-color: #fff;
+  border: 1px solid #00A699;
+  text-align: center;
 }
